@@ -27,28 +27,18 @@ public class UserStory4Test extends BaseTest {
 	String voucherName = "VOUCHER 1";
 	String voucherType = "TRAVEL";
 
-	@Title("Send POST Request with the Voucher payload")
+	@Title("Send POST Request with the Voucher payload and Validate Response")
 	@Test
 	public void postHeroRequestWithVoucherPayload() {
 		response = api.sendPostRequestVouchers(natid, name, gender, birthDate, deathDate, salary, taxPaid,
 				browniePoints, voucherName, voucherType);
-	}
-
-	@Title("Perform the Field Validations on the Voucher payload")
-	@Test
-	public void performFieldValidations() {
 		api.validateResponseVouchers(response, natid, name, gender, birthDate, deathDate, salary, taxPaid,
 				browniePoints, voucherName, voucherType);
-	}
-
-	@Title("Validate the voucher creation in the database")
-	@Test
-	public void voucherValidationDatabase() {
-		api.validateResponseVouchers(response, natid, name, gender, birthDate, deathDate, salary, taxPaid,
-				browniePoints, voucherName, voucherType);
+		//Validate voucher creation in database
 		String responseBody = response.getBody().asString();
 		boolean vouchersNotNullOrEmpty = responseBody.contains("\"vouchers\":");
 		boolean vouchersCreatedInDatabase = api.validateVouchersInDatabase();
 		assertFalse(!vouchersNotNullOrEmpty || !vouchersCreatedInDatabase);
 	}
+
 }

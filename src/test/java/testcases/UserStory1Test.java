@@ -24,15 +24,10 @@ public class UserStory1Test extends BaseTest {
 	double taxPaid = 1;
 	int browniePoints = 9;
 
-	@Title("Send POST Request on /api/v1/hero with the payload")
+	@Title("Send POST Request on /api/v1/hero with the payload and Validate Response")
 	@Test
 	public void postHeroRequestWithPayload() {
 		response = api.sendPostRequest(natid, name, gender, birthDate, deathDate, salary, taxPaid, browniePoints);
-	}
-
-	@Title("Perform the Field Validations on the /api/v1/hero response")
-	@Test
-	public void performFieldValidations() {
 		api.validateResponse(response, natid, name, gender, birthDate, deathDate, salary, taxPaid, browniePoints);
 	}
 

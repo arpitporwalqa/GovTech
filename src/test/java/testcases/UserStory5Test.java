@@ -19,27 +19,16 @@ public class UserStory5Test extends BaseTest {
 	String natID = "123";
 	Response response;
 
-	@Title("Send Get Request to validate if working class owe money")
+	@Title("Send Get Request to validate if working class owe money and validate Responses")
 	@Test
 	public void getHeroClassOweMoney() {
 		response = api.makeGetRequest(endpoint, natID);
-	}
-
-	@Title("Validate that NatID Value shall only be numeric")
-	@Test
-	public void validateNumericNatIDValue() {
+		//Validate Query Parameter is a integer
 		Assert.assertTrue(api.isInteger(natID));
-	}
-
-	@Title("Validate the Response Payload Format")
-	@Test
-	public void validateNullVoucherCondition() {
+		//Validate Response Format
 		api.validateResponseFormat(response);
-	}
-
-	@Title("Validate the Response Payload Content")
-	@Test
-	public void validateVoucherCreationDatabase() {
+		//Validate Response Content
 		api.validateResponseContent(response, natID);
 	}
+
 }
